@@ -89,20 +89,21 @@ const Practice = () => {
 
     if (!isCorrect) {
       setMistakes((prev) => prev + 1);
-    } else {
-      setTotalCorrectChars((prev) => prev + 1);
     }
 
-    setTotalChars((prev) => prev + 1);
-    setCurrentIndex((prev) => prev + 1);
-
-    // Calculate stats
+    // Calculate stats with updated values
     const newIndex = currentIndex + 1;
+    const newTotalChars = totalChars + 1;
+    const newTotalCorrectChars = totalCorrectChars + (isCorrect ? 1 : 0);
+    
     const timeElapsed = (Date.now() - (startTime || Date.now())) / 1000 / 60;
-    const wordsTyped = totalChars / 5;
+    const wordsTyped = newTotalChars / 5;
     const newWpm = Math.round(wordsTyped / (timeElapsed || 0.01));
-    const newAccuracy = totalChars > 0 ? Math.round((totalCorrectChars / totalChars) * 100) : 100;
+    const newAccuracy = Math.round((newTotalCorrectChars / newTotalChars) * 100);
 
+    setTotalCorrectChars(newTotalCorrectChars);
+    setTotalChars(newTotalChars);
+    setCurrentIndex(newIndex);
     setWpm(newWpm);
     setAccuracy(newAccuracy);
 
