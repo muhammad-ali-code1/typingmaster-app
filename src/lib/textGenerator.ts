@@ -21,6 +21,16 @@ const hardWords = [
   "substantial", "contemporary", "distribution", "establishment", "fundamental",
 ];
 
+// Words organized by letter count for progressive mode
+const wordsByLength: Record<number, string[]> = {
+  2: ["at", "is", "it", "be", "to", "of", "in", "on", "by", "or", "an", "my", "we", "so", "up", "do", "no", "me", "as", "go"],
+  4: ["make", "just", "know", "take", "come", "good", "work", "time", "year", "back", "then", "over", "also", "well", "only", "some", "into", "them", "look", "like"],
+  6: ["person", "become", "number", "people", "follow", "change", "around", "system", "before", "school", "during", "public", "little", "family", "really", "simple", "always", "myself", "happen", "appear"],
+  8: ["although", "children", "continue", "question", "business", "thousand", "material", "interest", "position", "American", "national", "possible", "probably", "decision", "remember", "consider", "actually", "describe", "standard", "increase"],
+  10: ["government", "production", "everything", "understand", "individual", "difference", "management", "experience", "technology", "especially", "throughout", "themselves", "particular", "population", "scientific", "opportunity", "generation", "community", "activities", "responsible"],
+  12: ["relationship", "organization", "development", "professional", "significance", "contemporary", "distribution", "neighborhood", "construction", "performance", "environmental", "unemployment", "entertainment", "independence", "international", "contribution", "availability", "appreciation", "consequences", "recognition"],
+};
+
 export const generateText = (
   difficulty: "easy" | "medium" | "hard" = "medium",
   wordCount: number = 50
@@ -44,5 +54,17 @@ export const generateText = (
     words.push(wordList[randomIndex]);
   }
 
+  return words.join(" ");
+};
+
+export const generateWordsByLength = (letterCount: number, wordCount: number = 5): string => {
+  const wordList = wordsByLength[letterCount] || wordsByLength[2];
+  const words: string[] = [];
+  
+  for (let i = 0; i < wordCount; i++) {
+    const randomIndex = Math.floor(Math.random() * wordList.length);
+    words.push(wordList[randomIndex]);
+  }
+  
   return words.join(" ");
 };

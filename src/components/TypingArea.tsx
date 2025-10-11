@@ -4,10 +4,11 @@ import { Card } from "@/components/ui/card";
 interface TypingAreaProps {
   text: string;
   currentIndex: number;
-  onTyping: (char: string) => void;
+  onTyping: (char: string, isCorrect: boolean) => void;
+  typedChars?: Array<{ char: string; correct: boolean }>;
 }
 
-const TypingArea = ({ text, currentIndex, onTyping }: TypingAreaProps) => {
+const TypingArea = ({ text, currentIndex, onTyping, typedChars = [] }: TypingAreaProps) => {
   const inputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,13 +18,14 @@ const TypingArea = ({ text, currentIndex, onTyping }: TypingAreaProps) => {
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key.length === 1) {
-        onTyping(e.key);
+        const isCorrect = e.key === text[currentIndex];
+        onTyping(e.key, isCorrect);
       }
     };
 
     window.addEventListener("keypress", handleKeyPress);
     return () => window.removeEventListener("keypress", handleKeyPress);
-  }, [onTyping]);
+  }, [onTyping, text, currentIndex]);
 
   return (
     <Card className="p-8 bg-card">
@@ -36,7 +38,13 @@ const TypingArea = ({ text, currentIndex, onTyping }: TypingAreaProps) => {
           let className = "transition-colors duration-150";
           
           if (index < currentIndex) {
-            className += " text-success";
+            // Check if this character was typed correctly
+            const typedChar = typedChars[index];
+            if (typedChar && !typedChar.correct) {
+              className += " text-error line-through"; // Red for incorrect
+            } else {
+              className += " text-success"; // Green for correct
+            }
           } else if (index === currentIndex) {
             className += " bg-primary/20 text-foreground animate-pulse";
           } else {

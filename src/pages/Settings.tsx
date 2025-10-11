@@ -47,6 +47,13 @@ const Settings = () => {
     }
   };
 
+  const resetPracticeProgress = () => {
+    if (confirm("Are you sure you want to reset your practice progress? This cannot be undone.")) {
+      localStorage.removeItem("bestPracticeLevel");
+      alert("Practice progress reset!");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
@@ -120,6 +127,17 @@ const Settings = () => {
                 </div>
                 <Button variant="destructive" onClick={clearLeaderboard}>
                   Clear
+                </Button>
+              </div>
+              <div className="flex items-center justify-between border-t pt-4">
+                <div>
+                  <Label className="text-base">Reset Practice Progress</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Reset your progressive practice level
+                  </p>
+                </div>
+                <Button variant="destructive" onClick={resetPracticeProgress}>
+                  Reset
                 </Button>
               </div>
             </div>
