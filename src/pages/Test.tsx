@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import TypingArea from "@/components/TypingArea";
+import { Card } from "@/components/ui/card";
 import StatsDisplay from "@/components/StatsDisplay";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Play } from "lucide-react";
@@ -8,24 +8,33 @@ import { generateText } from "@/lib/textGenerator";
 
 const Test = () => {
   const navigate = useNavigate();
-  const [text, setText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [words, setWords] = useState<string[]>([]);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [typedWord, setTypedWord] = useState("");
   const [startTime, setStartTime] = useState<number | null>(null);
   const [wpm, setWpm] = useState(0);
   const [accuracy, setAccuracy] = useState(100);
   const [mistakes, setMistakes] = useState(0);
+  const [totalCharsTyped, setTotalCharsTyped] = useState(0);
+  const [correctCharsTyped, setCorrectCharsTyped] = useState(0);
+  const [wordsCompleted, setWordsCompleted] = useState(0);
   const [timeLimit, setTimeLimit] = useState(60);
   const [timeLeft, setTimeLeft] = useState(60);
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
   const startTest = useCallback(() => {
-    setText(generateText("medium", timeLimit * 15));
-    setCurrentIndex(0);
+    const wordList = generateText("medium", timeLimit * 20).split(" ").filter(w => w.length > 0);
+    setWords(wordList);
+    setCurrentWordIndex(0);
+    setTypedWord("");
     setStartTime(Date.now());
     setWpm(0);
     setAccuracy(100);
     setMistakes(0);
+    setTotalCharsTyped(0);
+    setCorrectCharsTyped(0);
+    setWordsCompleted(0);
     setTimeLeft(timeLimit);
     setIsStarted(true);
     setIsFinished(false);
@@ -63,26 +72,78 @@ const Test = () => {
     return () => clearInterval(timer);
   }, [isStarted, isFinished, navigate, wpm, accuracy, mistakes, timeLimit]);
 
-  const handleTyping = (typedChar: string) => {
-    if (!isStarted || isFinished) return;
+  useEffect(() => {
+    if (!isStarted || isFinished || words.length === 0) return;
 
-    const isCorrect = typedChar === text[currentIndex];
-    
-    if (!isCorrect) {
-      setMistakes((prev) => prev + 1);
-    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const currentWord = words[currentWordIndex];
+      
+      // Handle backspace
+      if (e.key === "Backspace") {
+        e.preventDefault();
+        setTypedWord((prev) => prev.slice(0, -1));
+        return;
+      }
 
-    setCurrentIndex((prev) => prev + 1);
+      // Handle space bar - move to next word
+      if (e.key === " ") {
+        e.preventDefault();
+        
+        // Only advance if user typed something
+        if (typedWord.length > 0) {
+          // Calculate accuracy for this word
+          const wordChars = currentWord.length;
+          const typedChars = typedWord.length;
+          const maxLength = Math.max(wordChars, typedChars);
+          
+          let correctChars = 0;
+          for (let i = 0; i < maxLength; i++) {
+            if (currentWord[i] === typedWord[i]) {
+              correctChars++;
+            } else {
+              setMistakes((prev) => prev + 1);
+            }
+          }
 
-    const newIndex = currentIndex + 1;
-    const timeElapsed = (Date.now() - (startTime || Date.now())) / 1000 / 60;
-    const wordsTyped = newIndex / 5;
-    const newWpm = Math.round(wordsTyped / (timeElapsed || 0.01));
-    const newAccuracy = Math.round(((newIndex - mistakes - (isCorrect ? 0 : 1)) / newIndex) * 100);
+          const newTotalChars = totalCharsTyped + typedChars;
+          const newCorrectChars = correctCharsTyped + correctChars;
+          
+          setTotalCharsTyped(newTotalChars);
+          setCorrectCharsTyped(newCorrectChars);
+          setWordsCompleted((prev) => prev + 1);
 
-    setWpm(newWpm);
-    setAccuracy(newAccuracy);
-  };
+          // Calculate WPM and accuracy
+          const timeElapsed = (Date.now() - (startTime || Date.now())) / 1000 / 60;
+          const newWpm = Math.round((newTotalChars / 5) / (timeElapsed || 0.01));
+          const newAccuracy = Math.round((newCorrectChars / newTotalChars) * 100);
+
+          setWpm(newWpm);
+          setAccuracy(newAccuracy);
+
+          // Move to next word
+          setTypedWord("");
+          setCurrentWordIndex((prev) => {
+            const nextIndex = prev + 1;
+            // Loop back if we run out of words
+            if (nextIndex >= words.length) {
+              return 0;
+            }
+            return nextIndex;
+          });
+        }
+        return;
+      }
+
+      // Handle regular character typing
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        setTypedWord((prev) => prev + e.key);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isStarted, isFinished, words, currentWordIndex, typedWord, totalCharsTyped, correctCharsTyped, startTime, mistakes]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -133,11 +194,42 @@ const Test = () => {
             <>
               <StatsDisplay wpm={wpm} accuracy={accuracy} mistakes={mistakes} />
               
-              <TypingArea
-                text={text}
-                currentIndex={currentIndex}
-                onTyping={handleTyping}
-              />
+              <Card className="p-12 bg-card">
+                <div className="text-center space-y-6">
+                  <div className="text-sm text-muted-foreground font-medium">
+                    Word {wordsCompleted + 1}
+                  </div>
+                  
+                  <div className="text-5xl font-mono font-bold tracking-wider min-h-[80px] flex items-center justify-center">
+                    {words[currentWordIndex]?.split("").map((char, index) => {
+                      let className = "transition-colors duration-100";
+                      
+                      if (index < typedWord.length) {
+                        // Show typed characters
+                        if (typedWord[index] === char) {
+                          className += " text-success"; // Correct - green
+                        } else {
+                          className += " text-error"; // Wrong - red
+                        }
+                      } else if (index === typedWord.length) {
+                        className += " bg-primary/20 animate-pulse"; // Current cursor position
+                      } else {
+                        className += " text-muted-foreground"; // Untyped
+                      }
+
+                      return (
+                        <span key={index} className={className}>
+                          {char}
+                        </span>
+                      );
+                    })}
+                  </div>
+
+                  <div className="text-lg text-muted-foreground font-medium">
+                    Type the word above and press <kbd className="px-2 py-1 bg-secondary rounded text-sm">Space</kbd> to continue
+                  </div>
+                </div>
+              </Card>
             </>
           )}
         </div>
