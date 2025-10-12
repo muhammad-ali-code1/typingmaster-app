@@ -91,14 +91,18 @@ const Test = () => {
         
         // Only advance if user typed something
         if (typedWord.length > 0) {
-          // Calculate accuracy for this word
-          const wordChars = currentWord.length;
-          const typedChars = typedWord.length;
+          // Compare words (case-insensitive and trimmed)
+          const normalizedCurrentWord = currentWord.toLowerCase().trim();
+          const normalizedTypedWord = typedWord.toLowerCase().trim();
+          
+          // Calculate accuracy based on character matching
+          const wordChars = normalizedCurrentWord.length;
+          const typedChars = normalizedTypedWord.length;
           const maxLength = Math.max(wordChars, typedChars);
           
           let correctChars = 0;
           for (let i = 0; i < maxLength; i++) {
-            if (currentWord[i] === typedWord[i]) {
+            if (normalizedCurrentWord[i] === normalizedTypedWord[i]) {
               correctChars++;
             } else {
               setMistakes((prev) => prev + 1);
@@ -205,8 +209,8 @@ const Test = () => {
                       let className = "transition-colors duration-100";
                       
                       if (index < typedWord.length) {
-                        // Show typed characters
-                        if (typedWord[index] === char) {
+                        // Show typed characters (case-insensitive comparison)
+                        if (typedWord[index].toLowerCase() === char.toLowerCase()) {
                           className += " text-success"; // Correct - green
                         } else {
                           className += " text-error"; // Wrong - red

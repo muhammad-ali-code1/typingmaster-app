@@ -18,7 +18,8 @@ const TypingArea = ({ text, currentIndex, onTyping, typedChars = [] }: TypingAre
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key.length === 1) {
-        const isCorrect = e.key === text[currentIndex];
+        // Case-insensitive comparison
+        const isCorrect = e.key.toLowerCase() === text[currentIndex].toLowerCase();
         onTyping(e.key, isCorrect);
       }
     };
