@@ -24,7 +24,30 @@ const Test = () => {
   const [isFinished, setIsFinished] = useState(false);
 
   const startTest = useCallback(() => {
-    const wordList = generateText("medium", timeLimit * 20).split(" ").filter(w => w.length > 0);
+    // Predefined sentences for typing practice
+    const sentences = [
+      "The quick brown fox jumps over the lazy dog.",
+      "Typing fast takes practice and patience.",
+      "Accuracy is more important than speed.",
+      "Every great typist was once a beginner.",
+      "Focus on steady improvement each day.",
+      "Practice makes perfect with consistent effort.",
+      "Learning to type well opens many opportunities.",
+      "Proper finger placement improves typing speed.",
+      "Good posture helps prevent typing fatigue.",
+      "Regular breaks keep your hands healthy."
+    ];
+
+    // Generate enough sentences to fill the time limit
+    const wordsNeeded = timeLimit * 20;
+    let wordList: string[] = [];
+    
+    while (wordList.length < wordsNeeded) {
+      const randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+      const sentenceWords = randomSentence.split(" ").filter(w => w.length > 0);
+      wordList = [...wordList, ...sentenceWords];
+    }
+
     setWords(wordList);
     setCurrentWordIndex(0);
     setTypedWord("");
