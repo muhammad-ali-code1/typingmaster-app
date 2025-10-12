@@ -204,33 +204,57 @@ const Test = () => {
                     Word {wordsCompleted + 1}
                   </div>
                   
-                  <div className="text-5xl font-mono font-bold tracking-wider min-h-[80px] flex items-center justify-center">
-                    {words[currentWordIndex]?.split("").map((char, index) => {
-                      let className = "transition-colors duration-100";
+                  <div className="text-4xl font-mono font-bold tracking-wider min-h-[80px] flex items-center justify-center gap-4 flex-wrap">
+                    {/* Show 5 words at once */}
+                    {[0, 1, 2, 3, 4].map((offset) => {
+                      const wordIndex = currentWordIndex + offset;
+                      const word = words[wordIndex];
                       
-                      if (index < typedWord.length) {
-                        // Show typed characters (case-insensitive comparison)
-                        if (typedWord[index].toLowerCase() === char.toLowerCase()) {
-                          className += " text-success"; // Correct - green
-                        } else {
-                          className += " text-error"; // Wrong - red
-                        }
-                      } else if (index === typedWord.length) {
-                        className += " bg-primary/20 animate-pulse"; // Current cursor position
-                      } else {
-                        className += " text-muted-foreground"; // Untyped
-                      }
-
+                      if (!word) return null;
+                      
+                      const isCurrentWord = offset === 0;
+                      
                       return (
-                        <span key={index} className={className}>
-                          {char}
-                        </span>
+                        <div key={wordIndex} className="inline-flex transition-all duration-300">
+                          {isCurrentWord ? (
+                            // Current word being typed - show character-by-character feedback
+                            <span className="border-b-4 border-primary pb-1">
+                              {word.split("").map((char, index) => {
+                                let className = "transition-colors duration-100";
+                                
+                                if (index < typedWord.length) {
+                                  // Show typed characters (case-insensitive comparison)
+                                  if (typedWord[index].toLowerCase() === char.toLowerCase()) {
+                                    className += " text-success"; // Correct - green
+                                  } else {
+                                    className += " text-error"; // Wrong - red
+                                  }
+                                } else if (index === typedWord.length) {
+                                  className += " bg-primary/20 animate-pulse"; // Current cursor position
+                                } else {
+                                  className += " text-foreground"; // Untyped
+                                }
+
+                                return (
+                                  <span key={index} className={className}>
+                                    {char}
+                                  </span>
+                                );
+                              })}
+                            </span>
+                          ) : (
+                            // Upcoming words - show in muted color
+                            <span className="text-muted-foreground/60">
+                              {word}
+                            </span>
+                          )}
+                        </div>
                       );
                     })}
                   </div>
 
                   <div className="text-lg text-muted-foreground font-medium">
-                    Type the word above and press <kbd className="px-2 py-1 bg-secondary rounded text-sm">Space</kbd> to continue
+                    Type the words above and press <kbd className="px-2 py-1 bg-secondary rounded text-sm">Space</kbd> to continue
                   </div>
                 </div>
               </Card>
