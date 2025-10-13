@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Brain, Timer, Trophy, Settings, Keyboard, Info } from "lucide-react";
+import { Brain, Timer, Trophy, Settings, Keyboard } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -34,13 +34,6 @@ const Home = () => {
       icon: Settings,
       path: "/settings",
       gradient: "from-muted-foreground to-foreground",
-    },
-    {
-      title: "About Us",
-      description: "Learn more about TypeMaster",
-      icon: Info,
-      path: "/about",
-      gradient: "from-primary-glow to-accent",
     },
   ];
 
@@ -86,8 +79,21 @@ const Home = () => {
         </div>
       </main>
 
-      <footer className="py-6 text-center text-muted-foreground">
-        <p>Press any key to start typing • ESC to return home</p>
+      <footer className="py-6 text-center text-muted-foreground border-t border-border/40">
+        <div className="container mx-auto px-4">
+          <p className="mb-2">Press any key to start typing • ESC to return home</p>
+          <div className="flex justify-center gap-6 text-sm">
+            <button onClick={() => navigate("/about")} className="hover:text-primary transition-colors">
+              About Us
+            </button>
+            <button onClick={() => navigate("/privacy-policy")} className="hover:text-primary transition-colors">
+              Privacy Policy
+            </button>
+            <button onClick={() => navigate("/terms-and-conditions")} className="hover:text-primary transition-colors">
+              Terms & Conditions
+            </button>
+          </div>
+        </div>
       </footer>
     </div>
   );
