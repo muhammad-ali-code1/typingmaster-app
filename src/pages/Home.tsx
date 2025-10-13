@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Brain, Timer, Trophy, Settings, Keyboard } from "lucide-react";
+import { Brain, Timer, Trophy, Settings, Keyboard, Info } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -34,6 +34,13 @@ const Home = () => {
       icon: Settings,
       path: "/settings",
       gradient: "from-muted-foreground to-foreground",
+    },
+    {
+      title: "About Us",
+      description: "Learn more about TypeMaster",
+      icon: Info,
+      path: "/about",
+      gradient: "from-primary-glow to-accent",
     },
   ];
 
