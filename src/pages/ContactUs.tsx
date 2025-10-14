@@ -35,22 +35,34 @@ const ContactUs = () => {
             </div>
 
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 md:p-12 shadow-lg">
-              <p className="text-lg leading-relaxed text-foreground/90 mb-8">
-                If you have any questions, suggestions, or issues, we'd love to hear from you!
+              <p className="text-lg leading-relaxed text-foreground/90">
+                We value your feedback and questions. If you have any issues, suggestions, or collaboration ideas, please reach out to us. Our team at Typing Master is committed to supporting users and improving the website based on your needs.
               </p>
               
-              <div className="flex items-center gap-3 justify-center">
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                You can contact us directly through email at:
+              </p>
+
+              <div className="flex items-center gap-3 justify-center my-6">
                 <Mail className="w-6 h-6 text-primary" />
                 <a 
-                  href="mailto:officialmuhmmadali@gmail.com"
+                  href="mailto:officialmuhammadali008@gmail.com"
                   className="text-xl text-primary hover:text-primary/80 transition-colors font-medium"
                 >
-                  officialmuhmmadali@gmail.com
+                  officialmuhammadali008@gmail.com
                 </a>
               </div>
 
-              <p className="text-lg leading-relaxed text-foreground/90 mt-8 text-center">
-                We'll do our best to reply as soon as possible and help you improve your typing experience.
+              <p className="text-lg leading-relaxed text-foreground/90">
+                We aim to respond to all messages within 48 hours. Please include clear details about your question or concern so we can assist you quickly.
+              </p>
+
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                If you notice technical problems, spelling errors, or any bug in the typing test, kindly mention the device and browser you are using — this helps us fix issues faster.
+              </p>
+
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                We are constantly working to enhance your learning experience, and your input makes a big difference. Thank you for being part of the Typing Master community and helping us grow together.
               </p>
             </div>
           </div>

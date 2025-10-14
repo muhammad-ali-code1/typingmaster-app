@@ -36,9 +36,16 @@ const About = () => {
 
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 md:p-12 shadow-lg">
               <p className="text-lg leading-relaxed text-foreground/90">
-                Welcome to Typing Master, your trusted platform to improve typing speed and accuracy. 
-                Our goal is to help students and professionals practice, test, and master their typing skills with simple and effective exercises. 
-                We believe in learning through practice, and our tools are designed to make typing easy, fun, and fast for everyone.
+                Typing Master is a simple yet powerful web-based platform built to help people improve typing speed, accuracy, and confidence. Our mission is to make learning efficient through practice and fun challenges. We designed Typing Master for students, professionals, and anyone who wants to type faster on any device.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                We provide different modes such as Practice, Test, and Speed Check to track progress in real time. Each exercise is carefully designed to strengthen finger movement, increase speed, and reduce typing errors.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                Our goal is to create a free and accessible learning tool that supports education and digital growth worldwide. We are continuously improving our system to provide a better user experience with accurate results and a clean, distraction-free interface.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                At Typing Master, we believe that small daily efforts can lead to big achievements. Thank you for choosing us as your typing partner!
               </p>
             </div>
           </div>

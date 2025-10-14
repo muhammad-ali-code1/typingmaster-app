@@ -36,11 +36,13 @@ const PrivacyPolicy = () => {
 
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 md:p-12 shadow-lg">
               <p className="text-lg leading-relaxed text-foreground/90">
-                At Typing Master, your privacy is our top priority. 
-                We do not collect personal information without your consent. 
-                Any data collected (such as typing test results or feedback) is used only to improve our website's performance and user experience. 
-                We never share or sell your data to third parties. 
-                By using our website, you agree to this privacy policy.
+                At Typing Master, we care deeply about your privacy. We never ask for personal details such as your full name, address, or payment information. Any information collected, such as typing scores, device type, or time spent on pages, is used only to improve the accuracy and quality of our typing tools. We may use cookies to understand how users interact with the website so we can enhance speed, design, and functionality. These cookies never store personal data or share it with outside parties.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                We do not sell, rent, or exchange any user information with third parties. Occasionally, we may display third-party ads through trusted networks like Google AdSense. Those advertisers may use cookies to show you relevant ads. You can disable cookies through your browser settings if you prefer.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                By using Typing Master, you agree to this privacy policy and understand that we may update it from time to time. Any future updates will be posted here to keep you informed.
               </p>
             </div>
           </div>

@@ -36,10 +36,16 @@ const TermsAndConditions = () => {
 
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 md:p-12 shadow-lg">
               <p className="text-lg leading-relaxed text-foreground/90">
-                By using Typing Master, you agree to follow our terms and conditions. 
-                Our content is provided for learning and practice purposes only. 
-                Users must not misuse, copy, or distribute any part of the website without permission. 
-                We reserve the right to update or change these terms anytime to keep the website safe and functional for all users.
+                Welcome to Typing Master. By accessing or using our website, you agree to comply with the following terms and conditions. The content, tools, and materials on Typing Master are provided for educational and personal use only. You may not copy, reproduce, or redistribute our materials without written permission.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                Users are responsible for how they use our practice and test sections. We are not liable for any loss, error, or issue that may arise from using the site. The results shown in typing tests are for learning and self-evaluation only; they do not represent any official certification.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                We may modify or update these terms at any time to improve user experience or meet new legal standards. Continued use of the site after changes means you accept the revised terms.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/90 mt-6">
+                If you do not agree with any part of these terms, please stop using Typing Master immediately. Your safety, trust, and fair use of our platform are our top priorities.
               </p>
             </div>
           </div>
