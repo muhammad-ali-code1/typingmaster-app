@@ -1,12 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const About = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <SEO 
+        title="About Us - Learn About TypeMaster"
+        description="Typing Master is a free web-based platform to improve typing speed, accuracy, and confidence. Practice modes, tests, and speed checks for students and professionals."
+        keywords="about typing master, typing tutor, learn typing, improve typing skills, typing practice platform"
+        canonical="/about"
+      />
       <header className="border-b border-border/40 backdrop-blur-sm bg-background/50 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">

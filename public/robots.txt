@@ -1,14 +1,17 @@
+# Robots.txt for TypeMaster
+User-agent: *
+Allow: /
+Disallow: /settings
+Disallow: /results
+
+# Sitemap location
+Sitemap: https://02c3b83d-f6f6-42dd-b79f-9b9c2bedfc1b.lovableproject.com/sitemap.xml
+
+# Crawl-delay for specific bots
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
+Crawl-delay: 0

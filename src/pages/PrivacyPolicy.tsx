@@ -1,12 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <SEO 
+        title="Privacy Policy - Your Data Protection"
+        description="Read TypeMaster's privacy policy. We never collect personal information without consent and never share data with third parties. Learn how we protect your privacy."
+        keywords="privacy policy, data protection, user privacy, typing master privacy, cookies policy"
+        canonical="/privacy-policy"
+      />
       <header className="border-b border-border/40 backdrop-blur-sm bg-background/50 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">

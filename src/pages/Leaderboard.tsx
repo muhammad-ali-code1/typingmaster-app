@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Trophy, Medal, Award } from "lucide-react";
+import SEO from "@/components/SEO";
 
 interface LeaderboardEntry {
   name: string;
@@ -32,6 +33,12 @@ const Leaderboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Leaderboard - Top Typing Scores"
+        description="View top typing test scores and compete with other typists. Check the best WPM scores and accuracy rates. Challenge yourself to reach the top of the leaderboard."
+        keywords="typing leaderboard, top typing scores, typing competition, best WPM scores, typing rankings, fastest typists"
+        canonical="/leaderboard"
+      />
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Button

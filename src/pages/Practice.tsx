@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, RotateCcw, Trophy } from "lucide-react";
 import { generateWordsByLength } from "@/lib/textGenerator";
+import SEO from "@/components/SEO";
 import {
   Dialog,
   DialogContent,
@@ -143,6 +144,12 @@ const Practice = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Practice Mode - Improve Your Typing Skills"
+        description="Practice typing with progressive difficulty levels. Start with 2-letter words and advance to 12-letter words. Track your WPM, accuracy, and mistakes in real-time."
+        keywords="typing practice, typing exercises, improve typing speed, typing drills, progressive typing practice, typing lessons"
+        canonical="/practice"
+      />
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Button

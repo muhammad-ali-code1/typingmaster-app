@@ -1,12 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const ContactUs = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <SEO 
+        title="Contact Us - Get Support & Send Feedback"
+        description="Contact TypeMaster for support, feedback, or collaboration. We respond within 48 hours. Email us at officialmuhammadali008@gmail.com for any questions or suggestions."
+        keywords="contact typing master, customer support, feedback, help, typing test support, contact us"
+        canonical="/contact-us"
+      />
       <header className="border-b border-border/40 backdrop-blur-sm bg-background/50 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">

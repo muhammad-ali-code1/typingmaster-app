@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Brain, Timer, Trophy, Settings, Keyboard } from "lucide-react";
+import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,6 +41,13 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO 
+        title="Home - Practice Typing Speed & Accuracy"
+        description="Master your typing skills with TypeMaster! Free online typing tests, practice exercises, and leaderboards. Improve your WPM and accuracy with our typing tutor tools designed for students and professionals."
+        keywords="typing test, typing practice, typing speed test, improve typing speed, typing master, typing tutor, learn typing, typing accuracy, WPM test, free typing test"
+        canonical="/"
+      />
+      <StructuredData type="WebApplication" />
       <header className="py-8 px-4">
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">

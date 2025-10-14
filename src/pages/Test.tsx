@@ -5,6 +5,7 @@ import StatsDisplay from "@/components/StatsDisplay";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Play } from "lucide-react";
 import { generateText } from "@/lib/textGenerator";
+import SEO from "@/components/SEO";
 
 const Test = () => {
   const navigate = useNavigate();
@@ -174,6 +175,12 @@ const Test = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Test Mode - Measure Your Typing Speed"
+        description="Take a timed typing test to measure your WPM (Words Per Minute) and accuracy. Choose 1, 3, or 5-minute tests. Save your scores to the leaderboard and compete with others."
+        keywords="typing speed test, WPM test, typing test online, timed typing test, typing speed measurement, words per minute test"
+        canonical="/test"
+      />
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Button

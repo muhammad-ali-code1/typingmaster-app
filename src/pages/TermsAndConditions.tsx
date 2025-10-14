@@ -1,12 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const TermsAndConditions = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <SEO 
+        title="Terms & Conditions - Website Usage Policy"
+        description="Read TypeMaster's terms and conditions. Understand the rules and guidelines for using our free typing practice and test platform."
+        keywords="terms and conditions, terms of service, website terms, typing master terms, usage policy"
+        canonical="/terms-and-conditions"
+      />
       <header className="border-b border-border/40 backdrop-blur-sm bg-background/50 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">

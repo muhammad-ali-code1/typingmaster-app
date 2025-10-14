@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Moon, Sun, Volume2, VolumeX } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -56,6 +57,12 @@ const Settings = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Settings - Customize Your Typing Experience"
+        description="Customize your TypeMaster experience. Toggle dark mode, enable/disable sound effects, manage leaderboard data, and reset practice progress."
+        keywords="typing settings, customize typing test, dark mode typing, typing preferences, sound effects"
+        canonical="/settings"
+      />
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Button
