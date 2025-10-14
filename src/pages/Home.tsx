@@ -92,6 +92,9 @@ const Home = () => {
             <button onClick={() => navigate("/terms-and-conditions")} className="hover:text-primary transition-colors">
               Terms & Conditions
             </button>
+            <button onClick={() => navigate("/contact-us")} className="hover:text-primary transition-colors">
+              Contact Us
+            </button>
           </div>
         </div>
       </footer>

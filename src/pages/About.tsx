@@ -36,11 +36,9 @@ const About = () => {
 
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 md:p-12 shadow-lg">
               <p className="text-lg leading-relaxed text-foreground/90">
-                Welcome to Typing Master, your free online platform to improve typing speed, accuracy, and confidence. 
-                Our goal is to make typing practice fun, easy, and effective for everyone — from beginners to professionals. 
-                You can choose between practice and test modes, track your progress, and challenge yourself daily. 
-                We believe that with consistent practice, anyone can become a fast and confident typist. 
-                Start your typing journey today and become a true typing master!
+                Welcome to Typing Master, your trusted platform to improve typing speed and accuracy. 
+                Our goal is to help students and professionals practice, test, and master their typing skills with simple and effective exercises. 
+                We believe in learning through practice, and our tools are designed to make typing easy, fun, and fast for everyone.
               </p>
             </div>
           </div>

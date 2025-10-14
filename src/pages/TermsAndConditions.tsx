@@ -36,11 +36,10 @@ const TermsAndConditions = () => {
 
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-8 md:p-12 shadow-lg">
               <p className="text-lg leading-relaxed text-foreground/90">
-                Welcome to Typing Master. By accessing or using our website, you agree to follow these terms and conditions.
-                This website is designed for educational and typing practice purposes only.
-                You are not allowed to copy, reproduce, or redistribute any part of this site or its content without permission.
-                While we try to keep the website accurate and available, we are not responsible for any errors, downtime, or data loss.
-                By continuing to use this website, you accept these terms in full.
+                By using Typing Master, you agree to follow our terms and conditions. 
+                Our content is provided for learning and practice purposes only. 
+                Users must not misuse, copy, or distribute any part of the website without permission. 
+                We reserve the right to update or change these terms anytime to keep the website safe and functional for all users.
               </p>
             </div>
           </div>
