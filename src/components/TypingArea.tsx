@@ -10,9 +10,11 @@ interface TypingAreaProps {
 
 const TypingArea = ({ text, currentIndex, onTyping, typedChars = [] }: TypingAreaProps) => {
   const inputRef = useRef<HTMLDivElement>(null);
+  const mobileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
+    mobileInputRef.current?.focus();
   }, []);
 
   useEffect(() => {
@@ -29,12 +31,34 @@ const TypingArea = ({ text, currentIndex, onTyping, typedChars = [] }: TypingAre
     return () => window.removeEventListener("keypress", handleKeyPress);
   }, [onTyping, text, currentIndex]);
 
+  const handleMobileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    if (inputValue.length > 0) {
+      const char = inputValue[inputValue.length - 1];
+      const isCorrect = char.toLowerCase() === text[currentIndex].toLowerCase();
+      onTyping(char, isCorrect);
+      e.target.value = ''; // Clear input after processing
+    }
+  };
+
   return (
     <Card className="p-8 bg-card">
+      {/* Hidden input for mobile keyboard */}
+      <input
+        ref={mobileInputRef}
+        type="text"
+        onChange={handleMobileInput}
+        className="absolute opacity-0 pointer-events-none"
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        spellCheck="false"
+      />
       <div
         ref={inputRef}
         className="text-2xl font-mono leading-relaxed focus:outline-none select-none"
         tabIndex={0}
+        onClick={() => mobileInputRef.current?.focus()}
       >
         {text.split("").map((char, index) => {
           let className = "transition-colors duration-150";
