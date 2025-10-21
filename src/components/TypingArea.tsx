@@ -19,7 +19,7 @@ const TypingArea = ({ text, currentIndex, onTyping, typedChars = [] }: TypingAre
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key.length === 1) {
+      if (e.key.length === 1 && currentIndex < text.length) {
         e.preventDefault(); // Prevent spacebar from scrolling page
         // Case-insensitive comparison
         const isCorrect = e.key.toLowerCase() === text[currentIndex].toLowerCase();
@@ -33,7 +33,7 @@ const TypingArea = ({ text, currentIndex, onTyping, typedChars = [] }: TypingAre
 
   const handleMobileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    if (inputValue.length > 0) {
+    if (inputValue.length > 0 && currentIndex < text.length) {
       const char = inputValue[inputValue.length - 1];
       const isCorrect = char.toLowerCase() === text[currentIndex].toLowerCase();
       onTyping(char, isCorrect);
